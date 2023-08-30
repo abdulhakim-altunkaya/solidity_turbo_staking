@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap'); /*Oswald*/
+
+@media (max-width: 900px) {
+    body {
+        margin: 0;
+        font-family: "Quicksand", 'Trebuchet MS';
+        background-image: url("../public/background4.png");
+        background-size: 100%;
+      }
+      .App {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .upperbarDiv {
+        width: 100%;
+        min-height: 13vh;
+        background-color: #FDE8E8;
+        text-align: center;
+        padding: 7px;
+        margin-bottom: 30px;
+      }
+      .upperbarLogoDiv {
+        max-width:85%;
+        margin: auto;
+      }
+      #logo {
+        max-width:90%;
+        max-height:90%;
+        border-radius: 20px;
+      }
+      
+      .lowerbarDiv {
+        min-height: 80vh;
+        margin-top: 20px;
+        max-width: 100%;
+        background-color: white;
+        padding: 10px;
+      }
+      
+      .mainTokenDiv {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /*<button class="button6">COPY ME</button>*/
+      @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap'); /*Dosis*/
+      .upperbarButtonsDiv {
+        width: 90%;
+        margin: auto;
+      }
+      .button6 {
+        height: 26px;
+        width: 260px;
+        font-size: 15px;
+        padding: 2px;
+        background-color: #37363d;
+        color: #fcfcfc;
+        border: 2px whitesmoke solid;
+        border-radius: 8px; 
+        font-family: 'Dosis', sans-serif;
+        transition-duration: 0.4s;
+        user-select: none;
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+      }
+      .button6:hover {
+        font-weight: bolder;
+        cursor: pointer;
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+      }
+      
+
+      
+      .contractDetailsDiv {
+        white-space: pre-wrap;
+        word-wrap: break-word;   
+      }
+      .contractDetailsDiv span {
+        font-family: "Oswald", sans-serif;
+        font-weight: 700;
+      }
+      
+      
+      /*CONTACT FORM AREA*/
+      .smallFormDiv {
+        max-width: 92vw !important;
+      }
+      .contractSubmitForm textArea {
+        font-family: 'Quicksand', sans-serif;
+        margin-top: 5px;
+        font-size: 15px;
+        min-height: 250px;
+        
+        margin: auto;
+        border: 3px solid #ccc;
+        background-color: #ededed;
+        border-radius: 6px;
+      }
+      .contractSubmitForm textArea:focus {
+        background: lightgreen;
+      }
+      .contractSubmitForm textArea:required:focus:invalid {
+        background: lightpink;
+      }
+      
+      .hidingButton {
+        margin-top: 6px;
+        margin-bottom: 9px;
+        padding: 1px 12px;
+        background-color: #b2beb5;
+        font-size: 16px;
+        border: 1px solid lightslategray;
+        font-style: italic;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      /* CSS */
+      .button-87 {
+        font-size: 25px;
+        margin-top: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        border-radius: 10px;
+        display: block;
+        border: 0px;
+        font-weight: 700;
+        box-shadow: 0px 0px 14px -7px #f09819;
+        background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      .button-87:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+      }
+      .button-87:active {
+        transform: scale(0.95);
+      }
+      
+      .button-85 {
+        font-size: 20px;
+        margin-top: 5px;
+        padding: 4px 8px;
+        text-align: center;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        border-radius: 10px;
+        display: block;
+        border: 0px;
+        font-weight: 400;
+        box-shadow: 0px 0px 14px -7px #f09819;
+        background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      .button-85:hover {
+        background-position: right center;
+        /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+      }
+      .button-85:active {
+        transform: scale(0.95);
+      }
+      
+      .button9 {
+        background-color: aquamarine;
+        margin-top: 10px;
+        font-size: 21px;
+        padding: 4px;
+        border-radius: 5px;
+        min-width: 70vw !important;
+        cursor: pointer;
+        transition-duration: 0.3s;
+        margin-bottom: 10px;
+      }
+      .button9:hover {
+        background-color: lightseagreen;
+        font-weight: bolder;
+      }
+      .button9:active {
+        box-shadow: 0 2px #666;
+        transform: translateY(2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+      }
+
+
+      /*<button class="button4">COPY ME</button>*/
+      .button4{
+        display: inline-block;
+        outline: 0;
+        border: 0;
+        cursor: pointer;
+        transition: box-shadow 0.15s ease,transform 0.15s ease;
+        will-change: box-shadow,transform;
+        background: #FCFCFD;
+        box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+        height: 33px;
+        margin-top: 10px;
+        padding: 0 4px;
+        width: 115px;
+        font-size: 14px;
+        border-radius: 6px;
+        color: #36395a;
+        transition: box-shadow 0.15s ease,transform 0.15s ease;
+      }
+
+      .button4:hover {
+          box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+          transform: translateY(-2px);
+      }
+      .button4:active{
+          box-shadow: inset 0px 3px 7px #d6d6e7;
+          transform: translateY(2px);
+      }
+
+      .inputFields {
+        height: 27px;
+        width: 100px;
+        margin-left: 5px;
+        border-radius: 5px;
+      }
+      .inputFields:focus {
+        background-color: lightsalmon;
+        color:black;
+      }
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+
+      /*span in token area*/
+      .spanTokens {
+        margin-left: 14px;
+      }
+
+      .button10 {
+        background-color: #67de52;
+        font-size: 16px;
+        margin-top: 20px;
+        padding: 5px;
+        border-radius: 5px;
+        min-width: 30vw !important;
+        width: 150px;
+        cursor: pointer;
+        transition-duration: 0.3s;
+        margin-bottom: 10px;
+      }
+      .button10:hover {
+        background-color: #357c28;
+        font-weight: bolder;
+      }
+      .button10:active {
+        box-shadow: 0 2px #666;
+        transform: translateY(2px);
+        box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+      }
+      #aboutText {
+        margin-top: 120px;
+      }
+}

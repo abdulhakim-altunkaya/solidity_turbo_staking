@@ -1,7 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap'); /*Oswald*/
+
 body {
   margin: 0;
-  font-family: 'Trebuchet MS'; 
-  background-color: rgb(120, 136, 16);
+  font-family: "Quicksand", 'Trebuchet MS';
+  background-image: url("../public/background4.png");
+  background-size: 100%;
+}
+.App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+.upperbarDiv {
+  width: 80%;
+  min-height: 20vh;
+  margin: auto;
+  background-color: #FDE8E8;
+  text-align: center;
+  padding: 10px;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  margin-bottom: 30px;
+}
+
+
+.lowerbarDiv {
+  min-height: 70vh;
+  margin-top: 20px;
+  width: 80%;
+  margin: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 9px;
+}
+
+.mainTokenDiv {
+  display: flex;
+  flex-direction: row;
+}
+.tokenReadDiv, .tokenWriteDiv {
+  min-width: 50%;
+}
+
+/*<button class="button6">COPY ME</button>*/
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap'); /*Dosis*/
+.upperbarButtonsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.button6 {
+  height: 30px;
+  width: 250px;
+  font-size: 24px;
+  padding: 6px;
+  background-color: #37363d;
+  color: #fcfcfc;
+  border: 2px whitesmoke solid;
+  border-radius: 8px; 
+  font-family: 'Dosis', sans-serif;
+  transition-duration: 0.4s;
+  user-select: none;
+}
+.button6:hover {
+  font-weight: bolder;
+  cursor: pointer;
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.upperbarLogoDiv {
+  cursor: pointer;
+  overflow: hidden;
+}
+#logo {
+  border-radius: 10px;
+  height: 180px;
+}
+
+
+.contractDetailsDiv span {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+}
+
+
+/*CONTACT FORM AREA*/
+.contractSubmitForm textArea {
+  font-family: 'Quicksand', sans-serif;
+  min-height: 100px;
+  margin-top: 5px;
+  font-size: 15px;
+  min-height: 250px;
+  min-width: 98%;
+  border: 3px solid #ccc;
+  background-color: #ededed;
+  border-radius: 6px;
+}
+.contractSubmitForm textArea:focus {
+  background: lightgreen;
+}
+.contractSubmitForm textArea:required:focus:invalid {
+  background: lightpink;
+}
+
+.hidingButton {
+  margin-top: 6px;
+  margin-bottom: 9px;
+  padding: 1px 12px;
+  background-color: #b2beb5;
+  font-size: 16px;
+  border: 1px solid lightslategray;
+  font-style: italic;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.hidingButton:hover{
+  background-color: #6a726c;
+  color: white;
+}
+/* CSS */
+.button-87 {
+  font-size: 25px;
+  margin-top: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-87:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.button-87:active {
+  transform: scale(0.95);
+}
+
+.button-85 {
+  font-size: 20px;
+  margin-top: 5px;
+  padding: 4px 8px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 400;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-85:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.button-85:active {
+  transform: scale(0.95);
+}
+
+.button9 {
+  background-color: aquamarine;
+  font-size: 21px;
+  padding: 4px;
+  border-radius: 5px;
+  width: 45%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  margin-bottom: 10px;
+}
+.button9:hover {
+  background-color: lightseagreen;
+  font-weight: bolder;
+}
+.button9:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+
+
+/*<button class="button4">COPY ME</button>*/
+.button4{
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease,transform 0.15s ease;
+  will-change: box-shadow,transform;
+  background: #FCFCFD;
+  box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+  height: 33px;
+  min-width: 150px;
+  padding: 0 20px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  color: #36395a;
+  transition: box-shadow 0.15s ease,transform 0.15s ease;
+}
+
+.button4:hover {
+    box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #d6d6e7;
+    transform: translateY(-2px);
+}
+.button4:active{
+    box-shadow: inset 0px 3px 7px #d6d6e7;
+    transform: translateY(2px);
+}
+
+/*<input className="inputFields" />*/
+.inputFields {
+  height: 27px;
+  width: 130px;
+  margin-left: 12px;
+  border-radius: 5px;
+}
+.inputFields:focus {
+  background-color: lightsalmon;
+  color:black;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*span in token area*/
+.spanTokens {
+  margin-left: 14px;
+}
+
+#btnRed {
+  background-color: rgb(230, 73, 73) !important
+}
+
+
+.button10 {
+  background-color: #67de52;
+  font-size: 21px;
+  padding: 4px;
+  border-radius: 5px;
+  width: 220px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  margin-bottom: 10px;
+}
+.button10:hover {
+  background-color: rgb(21, 160, 51);
+  font-weight: bolder;
+}
+.button10:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+#aboutText {
+  margin-top: 110px;
+}
 
