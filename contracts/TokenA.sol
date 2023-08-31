@@ -56,7 +56,7 @@ contract TokenA is Ownable, ERC20Capped {
 
     function getYourBalance() external view returns(uint) {
         return balanceOf(msg.sender) / (10**18);
-    }
+    } 
 
     function getContractBalance() external view returns(uint) {
         return balanceOf(address(this)) / (10**18);

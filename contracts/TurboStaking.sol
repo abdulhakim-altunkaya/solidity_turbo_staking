@@ -198,6 +198,12 @@ contract TurboStaking is Ownable {
         emit StakeDecreased(_to, _index, decreaseAmount);
     }
 
+    function withdrawBalance() external onlyOwner {
+        uint balance = tokenA.balanceOf(address(this));
+        require(balance / (10**18) > 1, "insufficient balance in contract");
+        tokenA.transfer(msg.sender, balance);
+    }
+
     function displayStakes() external view returns(StakeDetails[] memory) {
         return StakeDetailsMapping[msg.sender];
     }

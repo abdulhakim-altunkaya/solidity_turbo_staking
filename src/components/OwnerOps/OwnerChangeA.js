@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import { useAccount } from '../../Store';  
 import { AddressOwner } from "../AddressABI/AddressOwner";
 
-function OwnerChangeTS() {
+function OwnerChangeA() {
 
   const {ethereum} = window;
 
-  let TurboStaking = useAccount(state => state.TurboStaking2);
+  const contractTokenA = useAccount(state => state.contractTokenA2);
 
   let[message, setMessage] = useState("");
   let[newAddress, setNewAddress] = useState("");
@@ -40,7 +40,7 @@ function OwnerChangeTS() {
       return;
     }
 
-    await TurboStaking.transferOwnership(newAddress);
+    await contractTokenA.transferOwnership(newAddress);
     setMessage("Owner successfully changed");
 
   }
@@ -48,11 +48,11 @@ function OwnerChangeTS() {
 
   return (
     <div>
-      <button onClick={transferOwner} className='button4'>Change Owner TurboStaking</button>
+      <button onClick={transferOwner} className='button4'>Change Owner TokenA</button>
       <input type="text" className='inputFields' placeholder='new owner address'
       value={newAddress} onChange={e => setNewAddress(e.target.value)} />&nbsp;&nbsp;{message}
     </div>
   )
 }
 
-export default OwnerChangeTS;
+export default OwnerChangeA;
