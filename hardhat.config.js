@@ -7,7 +7,7 @@ module.exports = {
   networks: {
     bnb: {
       url: process.env.PROVIDER_URL,
-      accounts: [`0x${process.env.PRIVATE_KEY}`],
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
     }
   }
 };

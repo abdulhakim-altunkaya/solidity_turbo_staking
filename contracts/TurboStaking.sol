@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity >=0.8.7;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -24,7 +24,7 @@ contract TurboStaking is Ownable {
     mapping(address => uint) public stakers;
     //Keeping track total staked amount in the system.
     uint public totalStaked;
-    //tokenA address to be assigned by constructor
+    //tokenA address to be assigned by a function
     IERC20 public tokenA;
 
     // --- MODIFIERS ---

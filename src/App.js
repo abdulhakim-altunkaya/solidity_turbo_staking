@@ -7,8 +7,8 @@ function App() {
     <div className="App">
       
       <Router>
-            <Upperbar />
-            <Lowerbar />
+        <Upperbar />
+        <Lowerbar />
       </Router>
 
     </div>
