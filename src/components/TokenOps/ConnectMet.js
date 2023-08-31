@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
+import { AddressTokenA } from "../AddressABI/AddressTokenA";
 
 function ConnectMet() {
 
@@ -29,11 +31,11 @@ function ConnectMet() {
                 <div className='contractDetailsDiv'>
                     <span>Your Metamask Account:</span>  <br />{account} <br /> 
                     <span>Owner address:</span> 0x50b716662ca9717BA5DD7B20b5b722Cf15B0821B <br />   
-                    <span>TurboStaking address:</span> 0x478bf3f120f6EDD3970941D4632897918212F5d9 <br />
-                    <span>TokenA address:</span> 0x964e16939c2Bd80AFD75184D3D7ec61b384f15B0 <br />
+                    <span>TurboStaking address:</span> {AddressTurboStaking} <br />
+                    <span>TokenA address:</span> {AddressTokenA} <br />
                     <span>TokenA symbol & Cap:</span>  TOKA, 1000000 <br />
                     <span>TokenA Standard & Decimals:</span>  ERC20, 18 <br />
-                    <span>Network:</span> opBNB Testnet <br />
+                    <span>Network:</span> BNB Testnet <br />
                 </div>
                 </>
                 :
