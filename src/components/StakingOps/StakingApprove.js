@@ -1,17 +1,18 @@
 import React from 'react';
+import { ethers } from "ethers";
 import { useState } from 'react';
 import { useAccount } from '../../Store';  
-import { AddressCoinfog } from "../AddressABI/AddressTurboStaking";
+import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
 
 
-function FogApprove() {
+function StakingApprove() {
 
   let contractTokenA = useAccount(state => state.contractTokenA2);
 
   let [message, setMessage] = useState("");
   let [amount, setAmount] = useState("");
 
-  const approveCoinFog = async () => {
+  const approvePlatform = async () => {
 
     let amount1 = parseInt(amount);
 
@@ -26,7 +27,7 @@ function FogApprove() {
     }
 
     if(amount1 < 1) {
-      alert("Minimum amount is 1 toka (security check 3)");
+      alert("Minimum amount is 1 (security check 3)");
       return;
     }
 
@@ -39,23 +40,19 @@ function FogApprove() {
       return;
     }
 
-    await contractTokenA.approveCoinFog(AddressCoinfog, amount1);
-    setMessage(`Success, approval amount: ${amount1} TOKA`);
+    const valueWithDecimals = ethers.utils.parseUnits(amount1, 18);
+    await contractTokenA.approve(AddressTurboStaking, valueWithDecimals);
+    setMessage(`Success, approval amount: ${amount1} Token`);
 
   }
 
   return (
     <div>
-      <button className='button10' onClick={approveCoinFog}>Approve</button>
-      <input type="number" className='inputFields' placeholder='TokenA amount'
+      <button className='button10' onClick={approvePlatform}>Approve</button>
+      <input type="number" className='inputFields' placeholder='Token amount'
       value={amount} onChange={ e => setAmount(e.target.value)} /> {message}
     </div>
   )
 }
 
-export default FogApprove;
-
-
-
-
-    
+export default StakingApprove;

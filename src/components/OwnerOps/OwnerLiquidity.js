@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { ethers } from "ethers";
 import { useAccount } from '../../Store';  
 import { AddressOwner } from "../AddressABI/AddressOwner";
-import { AddressTokenA } from "../AddressABI/AddressTokenA";
+import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
+
 
 function OwnerLiquidity() {
   const {ethereum} = window;
@@ -52,8 +53,8 @@ function OwnerLiquidity() {
     }
 
 
-    const valueWithDecimals = await ethers.utils.parseUnits(amount1, 18);
-    await contractTokenA.transfer(AddressTokenA, valueWithDecimals);
+    const valueWithDecimals = ethers.utils.parseUnits(amount1, 18);
+    await contractTokenA.transferFrom(AddressOwner, AddressTurboStaking, valueWithDecimals);
     setMessage(`Success, ${amount1} tokenA liquidity provided`);
     
   }
