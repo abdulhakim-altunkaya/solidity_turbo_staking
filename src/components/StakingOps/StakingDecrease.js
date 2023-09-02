@@ -87,8 +87,8 @@ function StakingDecrease() {
       return;
     }
 
-    await contractTurboStaking.claimReward(receiverAddress, indexInput1);
-    setMessage(`You successfully claimed a Reward of ${indexInput1} token`);
+    await contractTurboStaking.decreaseStake(indexInput1, amountInput1, receiverAddress);
+    setMessage(`You successfully decreased your staking by ${amountInput1} token`);
   }
 
   return (

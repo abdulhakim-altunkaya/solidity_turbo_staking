@@ -5,6 +5,7 @@ import StakingDeposit from "./StakingDeposit";
 import StakingRewardStake from "./StakingRewardStake";
 import StakingRewardClaim from "./StakingRewardClaim";
 import StakingDecrease from "./StakingDecrease";
+import Unstake from "./Unstake";
 
 function Staking() {
   return (
@@ -15,6 +16,7 @@ function Staking() {
       <StakingRewardStake />
       <StakingRewardClaim />
       <StakingDecrease />
+      <Unstake />
 
       <p id='aboutText'>Project created by Abdulhakim Altunkaya. 2023 August</p>
     </div>
