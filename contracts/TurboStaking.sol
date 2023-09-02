@@ -35,6 +35,13 @@ contract TurboStaking is Ownable {
         }
         _;
     }
+    function isStaker() external view returns(bool) {
+        if(stakers[msg.sender] == 0 ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     //MODIFIER-2: Pausing system in case of emergencies, onlyOwner can pause and unpause
     bool public isPaused = false;
@@ -64,7 +71,7 @@ contract TurboStaking is Ownable {
     // SUPPORT FUNCTION 3: calculate stake reward
     // Reward will be calculated on a daily basis on compound interest formula. Current apy is 10%.
     // startTime will be obtained from staking record. Endtime will be function block.timestamp
-    function calculateReward(uint _amount, uint _startTime) internal view returns(uint) {
+    function calculateReward(uint _amount, uint _startTime) public view returns(uint) {
         uint principal = _amount;
         //getting number of days stake remained in the system
         uint numberDays = (block.timestamp - _startTime) / 1 days;
@@ -102,6 +109,7 @@ contract TurboStaking is Ownable {
         //fetching stake details for reward(yield) calculation
         uint stakeAmount = StakeDetailsMapping[msg.sender][_index].amount;
         uint stakeTime = StakeDetailsMapping[msg.sender][_index].startTime;
+
         require(stakeAmount > 0, "stake amount must be bigger than 0");
         uint reward = calculateReward(stakeAmount, stakeTime);
 
@@ -116,7 +124,7 @@ contract TurboStaking is Ownable {
         StakeDetails memory newStake = StakeDetails(reward, block.timestamp);
         //pushing new stake record to the stake array of the msg.sender
         StakeDetailsMapping[msg.sender].push(newStake);
-
+        
         emit RewardStaked(msg.sender, _index, reward);
     }
 
@@ -198,6 +206,7 @@ contract TurboStaking is Ownable {
         emit StakeDecreased(_to, _index, decreaseAmount);
     }
 
+    //owner can withdraw tokens inside the contract
     function withdrawBalance() external onlyOwner {
         uint balance = tokenA.balanceOf(address(this));
         require(balance / (10**18) > 1, "insufficient balance in contract");

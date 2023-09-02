@@ -38,13 +38,6 @@ contract TokenA is Ownable, ERC20Capped {
         emit TokenBurned(msg.sender, _amount);
     }
 
-    //approve swap contract before sending tokens to it for liquidity, decimals handled
-    function approvePanda(address _pandaContract, uint _amount) external {
-        require(_amount > 0, "approve amount must be greater than 0");
-        uint amount = _amount*(10**18);
-        _approve(msg.sender, _pandaContract, amount);
-    }
-
     //general view functions, you can understand what they do from names, decimals handled
     function getTotalSupply() external view returns(uint) {
         return totalSupply() / (10**18);

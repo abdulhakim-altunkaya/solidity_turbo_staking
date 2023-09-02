@@ -12,6 +12,7 @@ function StakingBalances() {
 
   let [balanceTokenA, setBalanceTokenA] = useState("");
   let [userAllowanceAmount, setUserAllowanceAmount] = useState("");
+  let [displayStatus, setDisplayStatus] = useState(false);
 
   const getBalances = async () => {
 
@@ -32,6 +33,8 @@ function StakingBalances() {
 
     //getting fee data
     let tokaBalance = await contractTurboStaking.getContractTokenABalance();
+
+    setDisplayStatus(!displayStatus);
     setBalanceTokenA(tokaBalance.toString())
     setUserAllowanceAmount(userAllowance3);    
   }
@@ -42,15 +45,21 @@ function StakingBalances() {
         To use this system: <br />
         1. Mint some TokenA in "Token Operations" section. <br />
         2. Make sure you are on BNB Testnet and have some BNB coins. <br />
-        3. Approve the system with any amount. Approve amount should be bigger than your planned deposit amount.
-        7. Go to "Stake" button area, enter amount. <br />
+        3. "Approve" the system with any amount and then "Stake" the amount you want. <br />
       </p>
       <button onClick={getBalances} className='button10'>GET BALANCES</button> <br />
 
-      <>
-        <strong><span>Staking Pool Balance:</span></strong> {balanceTokenA} TokenA<br />
-        <strong>User Allowance:</strong> {userAllowanceAmount} TokenA <br />
-      </>
+      {
+        displayStatus === false ? 
+        <></>
+        :
+        <>
+          <strong><span>Staking Pool Balance:</span></strong> {balanceTokenA} TokenA<br />
+          <strong>User Allowance:</strong> {userAllowanceAmount} TokenA <br />
+        </>
+      }
+
+
 
     </div>
   )
