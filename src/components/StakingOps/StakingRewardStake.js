@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useAccount } from '../../Store';
-import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
 import { useMediaQuery } from 'react-responsive';
 
 
@@ -11,7 +10,6 @@ function StakingRewardStake() {
   const {ethereum} = window;
 
   const contractTurboStaking = useAccount(state => state.contractTurboStaking2);
-  const contractTokenA = useAccount(state => state.contractTokenA2);
   
   let [indexInput, setIndexInput] = useState("");
   let [message, setMessage] = useState("");
@@ -21,13 +19,14 @@ function StakingRewardStake() {
     //LOCAL VARIABLES
     let indexInput1 = parseInt(indexInput);
 
-    let userAccount;
     if(window.ethereum !== "undefined") {
-      const accounts = await ethereum.request({method: "eth_requestAccounts"});
-      userAccount = accounts[0];
+      await ethereum.request({method: "eth_requestAccounts"});
+    } else {
+      alert("dowload metamask please");
+      return;
     }
 
-    //AMOUNT CHECKS
+    //INDEX CHECKS
     if(indexInput1 === "") {
       alert("index number cannot be empty (Security Check 1)");
       return;
@@ -44,7 +43,7 @@ function StakingRewardStake() {
     }
 
     if(!/^\d+$/.test(indexInput1)) {
-        alert("The input is not a valid index number. Dont use negative sign or commas. (Security Check 4)");
+        alert("The input is not valid index number. Dont use negative sign or commas. (Security Check 4)");
         return;
     }
 
@@ -53,6 +52,14 @@ function StakingRewardStake() {
     if(stakerStatus === false) {
       alert("You dont have any reward. Your staking balance is 0 (security check 5)");
       return;
+    }
+
+    let stakeAmount = await contractTurboStaking.displaySpecificStakeAmount(indexInput1);
+    let stakeAmount2 = stakeAmount.toString();
+    let stakeAmount3 = parseInt(stakeAmount2);
+    if(stakeAmount3 < 1) {
+        alert("Stake amount for this number is 0. Check you stake number. (security check 5)");
+        return;
     }
 
     //SYSTEM CHECKS

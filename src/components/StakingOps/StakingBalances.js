@@ -45,7 +45,7 @@ function StakingBalances() {
         To use this system: <br />
         1. Mint some TokenA in "Token Operations" section. <br />
         2. Make sure you are on BNB Testnet and have some BNB coins. <br />
-        3. "Approve" the system with any amount and then "Stake" the amount you want. <br />
+        3. "Approve" the system with any amount and then "Stake" the amount. <br />
       </p>
       <button onClick={getBalances} className='button10'>GET BALANCES</button> <br />
 

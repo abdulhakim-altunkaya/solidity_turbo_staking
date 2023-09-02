@@ -174,7 +174,7 @@ contract TurboStaking is Ownable {
 
         tokenA.transfer(_to, totalAmount);
 
-        emit Unstaked(_to, _index);
+        emit Unstaked(_to, _index); 
     }
 
     function decreaseStake(uint _index, uint _decreaseAmount, address _to) external onlyStakers pauseStatus { 
@@ -222,7 +222,7 @@ contract TurboStaking is Ownable {
     }
 
     function displaySpecificStakeAmount(uint _index) external view returns(uint){
-        return StakeDetailsMapping[msg.sender][_index].amount;
+        return StakeDetailsMapping[msg.sender][_index].amount / (10**18);
     }
 
     function getContractTokenABalance() external view returns(uint) {
