@@ -14,7 +14,7 @@ function OwnerLiquidity() {
   let [message, setMessage] = useState("");
 
   const provideLiquidity = async () => {
-    let amount1 = parseInt(amount);
+    let amount1 = amount;
     if(amount1 === "") {
       alert("liquidity amount cannot be empty (Security Check 1)");
       return
@@ -31,6 +31,11 @@ function OwnerLiquidity() {
       alert("liquidity amount cannot be less than 10000 (Security Check 4)");
       return;
     }
+    if(!/^\d+$/.test(amount1)) {
+      alert("Amount not valid. Dont use negative sign or commas. (Security Check 4)");
+      return;
+    }
+
     let accounts;
     if(window.ethereum !== "undefined") {
       accounts = await ethereum.request({ method: "eth_requestAccounts"});

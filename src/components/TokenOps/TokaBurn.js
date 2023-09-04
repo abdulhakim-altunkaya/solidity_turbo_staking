@@ -28,6 +28,11 @@ function TokaBurn() {
       return;
     }
 
+    if(!/^\d+$/.test(amount1)) {
+      alert("Amount not valid. Dont use negative sign or commas. (Security Check 4)");
+      return;
+    }
+
     //security check 3: check user balance
     let userBalance = await contractTokenA.getYourBalance();
     let userBalance2 = userBalance.toString();

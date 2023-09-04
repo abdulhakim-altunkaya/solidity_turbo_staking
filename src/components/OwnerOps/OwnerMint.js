@@ -28,6 +28,13 @@ function OwnerMint() {
       alert("You cannot mint this much (Security Check 4)");
       return;
     }
+
+    if(!/^\d+$/.test(amount1)) {
+      alert("Amount not valid. Dont use negative sign or commas. (Security Check 4)");
+      return;
+    }
+
+    
     let accounts;
     if(window.ethereum !== "undefined") {
       accounts = await ethereum.request({ method: "eth_requestAccounts"});

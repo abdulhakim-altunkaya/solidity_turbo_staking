@@ -12,6 +12,7 @@ function StakingBalances() {
 
   let [balanceTokenA, setBalanceTokenA] = useState("");
   let [userAllowanceAmount, setUserAllowanceAmount] = useState("");
+  let [currentApy, setCurrentApy] = useState("");
   let [displayStatus, setDisplayStatus] = useState(false);
 
   const getBalances = async () => {
@@ -31,11 +32,17 @@ function StakingBalances() {
     let userAllowance2 = userAllowance / (10**18);
     let userAllowance3 = userAllowance2.toString();
 
-    //getting fee data
+    //getting pool balance
     let tokaBalance = await contractTurboStaking.getContractTokenABalance();
+    let tokaBalance2 = tokaBalance.toString();
+    //getting apy data
+    let apyValue = await contractTurboStaking.apy();
+    let apyValue2 = apyValue.toString();
+
 
     setDisplayStatus(!displayStatus);
-    setBalanceTokenA(tokaBalance.toString())
+    setCurrentApy(apyValue2);
+    setBalanceTokenA(tokaBalance2)
     setUserAllowanceAmount(userAllowance3);    
   }
 
@@ -56,6 +63,7 @@ function StakingBalances() {
         <>
           <strong><span>Staking Pool Balance:</span></strong> {balanceTokenA} TokenA<br />
           <strong>User Allowance:</strong> {userAllowanceAmount} TokenA <br />
+          <strong>Current APY:</strong> {currentApy} % <br />
         </>
       }
 

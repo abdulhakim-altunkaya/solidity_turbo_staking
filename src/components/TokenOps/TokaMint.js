@@ -20,6 +20,10 @@ function TokaMint() {
       alert("mint at least 1 token (Security Check 2)");
       return;
     }
+    if(!/^\d+$/.test(amount1)) {
+      alert("Amount not valid. Dont use negative sign or commas. (Security Check 4)");
+      return;
+    }
 
     //security check 2: if you have 1000 toka, you cannot mint more
     let userBalance = await contractTokenA.getYourBalance();

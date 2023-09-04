@@ -14,7 +14,7 @@ function StakingApprove() {
 
   const approvePlatform = async () => {
 
-    let amount1 = parseInt(amount);
+    let amount1 = amount;
 
     if(amount1 === "") {
       alert("Approve amount cannot be empty (security check 1)");
