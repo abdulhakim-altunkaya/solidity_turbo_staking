@@ -1,1 +1,1 @@
-export const AddressTurboStaking = "0xc086Ab22260B466c8a42F93A54397c6257f3652a"
+export const AddressTurboStaking = "0xF88A4e2F956F5e6FEF2943e0bF434DC19EF6720D"

@@ -1,4 +1,4 @@
-export const ABITurboStaking = [
+export const ABITurboStaking =   [
   {
     "inputs": [
       {
@@ -406,20 +406,7 @@ export const ABITurboStaking = [
         "type": "uint256"
       }
     ],
-    "name": "provideLiquidity1",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "provideLiquidity2",
+    "name": "provideLiquidity",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

@@ -1,4 +1,4 @@
-export const ABITokenA = [
+export const ABITokenA =  [
   {
     "inputs": [
       {
@@ -373,42 +373,6 @@ export const ABITokenA = [
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_stakingContract",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "provide1",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_stakingContract",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "provide2",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

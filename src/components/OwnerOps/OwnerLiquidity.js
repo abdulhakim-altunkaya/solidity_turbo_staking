@@ -67,7 +67,7 @@ function OwnerLiquidity() {
     }
 
     await contractTurboStaking.provideLiquidity(amountInput1);
-    setMessage(`Lİquidity provided: ${amountInput1} token`);
+    setMessage(`Liquidity provided: ${amountInput1} token`);
   }
 
   return (
