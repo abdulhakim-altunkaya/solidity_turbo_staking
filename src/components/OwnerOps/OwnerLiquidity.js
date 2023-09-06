@@ -1,74 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ethers } from "ethers";
+import { useState } from 'react';
 import { useAccount } from '../../Store';  
-import { AddressOwner } from "../AddressABI/AddressOwner";
 import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
-
+import { AddressOwner } from "../AddressABI/AddressOwner";
 
 function OwnerLiquidity() {
-  const {ethereum} = window;
 
-  const contractTokenA = useAccount(state => state.contractTokenA2);
+  let contractTokenA = useAccount(state => state.contractTokenA2);
 
-  let [amount, setAmount] = useState("");
   let [message, setMessage] = useState("");
+  let [amount, setAmount] = useState("");
 
-  const provideLiquidity = async () => {
+  const approvePlatform = async () => {
+
     let amount1 = amount;
+
     if(amount1 === "") {
-      alert("liquidity amount cannot be empty (Security Check 1)");
-      return
+      alert("Approve amount cannot be empty (security check 1)");
+      return;
     }
+
     if(amount === "") {
-      alert("liquidity amount cannot be empty (Security Check 2)");
+      alert("Approve amount cannot be empty (security check 2)");
       return
     }
-    if(amount1 < 100) {
-      alert("liquidity amount cannot be less than 100 (Security Check 3)");
-      return;
-    }
-    if(amount1 > 10000) {
-      alert("liquidity amount cannot be less than 10000 (Security Check 4)");
-      return;
-    }
-    if(!/^\d+$/.test(amount1)) {
-      alert("Amount not valid. Dont use negative sign or commas. (Security Check 4)");
+
+    if(amount1 < 1) {
+      alert("Minimum amount is 1 (security check 3)");
       return;
     }
 
-    let accounts;
-    if(window.ethereum !== "undefined") {
-      accounts = await ethereum.request({ method: "eth_requestAccounts"});
-    } else {
-      alert("Please install Metamask");
-      return;
-    }
-    
-    if(accounts[0].toLowerCase() !== AddressOwner.toLowerCase()) {
-      setMessage("You are not owner");
-      return;
-    }
-  
-    let ownerBal = await contractTokenA.getYourBalance();
-    let ownerBal2 = ownerBal.toString();
-    let ownerBal3 = parseInt(ownerBal2);
-    if(ownerBal3 < amount1) {
-        alert("You don't have enough balance");
-        return;
-    }
+    let userBalance = await contractTokenA.getYourBalance();
+    let userBalance2 = userBalance.toString();
+    let userBalance3 = parseInt(userBalance2);
 
+    if(userBalance3 < 1) {
+      alert("You dont have TokenA to approve. First mint some TokenA (security check 3)");
+      return;
+    }
 
     const valueWithDecimals = ethers.utils.parseUnits(amount1, 18);
     await contractTokenA.transferFrom(AddressOwner, AddressTurboStaking, valueWithDecimals);
-    setMessage(`Success, ${amount1} tokenA liquidity provided`);
-    
+    setMessage(`Success, transfer amount: ${amount1} Token`);
+
   }
 
   return (
     <div>
-        <button onClick={provideLiquidity} className='button4'>Provide Liquidity</button>
-        <input type="number" className='inputFields' placeholder='enter amount'
-        value={amount} onChange={e => setAmount(e.target.value)}/> {message}
+      <button className='button10' onClick={approvePlatform}>liquidity</button>
+      <input type="number" className='inputFields' placeholder='Token amount'
+      value={amount} onChange={ e => setAmount(e.target.value)} /> {message}
     </div>
   )
 }

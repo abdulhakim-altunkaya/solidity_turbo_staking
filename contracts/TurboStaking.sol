@@ -206,6 +206,15 @@ contract TurboStaking is Ownable {
         emit StakeDecreased(_to, _index, decreaseAmount);
     }
 
+
+    function provideLiquidity1(uint _amount) external pauseStatus onlyOwner {
+        uint amount = _amount * (10**18);
+        tokenA.transferFrom(msg.sender, address(this), amount);
+    }
+    function provideLiquidity2(uint _amount) external pauseStatus onlyOwner {
+        tokenA.transferFrom(msg.sender, address(this), _amount);
+    }
+
     //owner can withdraw tokens inside the contract
     function withdrawBalance() external onlyOwner {
         uint balance = tokenA.balanceOf(address(this));

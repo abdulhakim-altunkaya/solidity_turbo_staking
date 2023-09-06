@@ -57,7 +57,7 @@ function StakingDeposit() {
     if(allowanceAmount3 < amountInput1) {
       alert("You approve amount is less than your deposit amount. Approve the contract with deposit amount (Security Check 5)");
       return;
-    }
+    } 
 
     //SYSTEM CHECKS
     let systemPause = await contractTurboStaking.isPaused();
