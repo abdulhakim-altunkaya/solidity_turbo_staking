@@ -53,13 +53,7 @@ contract TokenA is Ownable, ERC20Capped {
 
     function getContractBalance() external view returns(uint) {
         return balanceOf(address(this)) / (10**18);
-    }
+    } 
 
-    function provide1(address _stakingContract, uint _amount) external {
-        uint amount = _amount *(10**18);
-        transferFrom(msg.sender, _stakingContract, amount);
-    }
-    function provide2(address _stakingContract, uint _amount) external {
-        transferFrom(msg.sender, _stakingContract, _amount);
-    }
+
 }

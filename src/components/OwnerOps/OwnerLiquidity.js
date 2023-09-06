@@ -1,58 +1,84 @@
-import React from 'react';
-import { ethers } from "ethers";
-import { useState } from 'react';
-import { useAccount } from '../../Store';  
+import React, { useState } from 'react';
+import { useAccount } from '../../Store';
 import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
-import { AddressOwner } from "../AddressABI/AddressOwner";
+import { useMediaQuery } from 'react-responsive';
+
 
 function OwnerLiquidity() {
 
-  let contractTokenA = useAccount(state => state.contractTokenA2);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
+  const {ethereum} = window;
+
+  const contractTurboStaking = useAccount(state => state.contractTurboStaking2);
+  const contractTokenA = useAccount(state => state.contractTokenA2);
+  
+  let [amountInput, setAmountInput] = useState("");
   let [message, setMessage] = useState("");
-  let [amount, setAmount] = useState("");
 
-  const approvePlatform = async () => {
+  const provideLiq = async () => {
 
-    let amount1 = amount;
+    //LOCAL VARIABLES
+    let amountInput1 = parseInt(amountInput);
 
-    if(amount1 === "") {
-      alert("Approve amount cannot be empty (security check 1)");
+    let userAccount;
+    if(window.ethereum !== "undefined") {
+      const accounts = await ethereum.request({method: "eth_requestAccounts"});
+      userAccount = accounts[0];
+    }
+
+    //AMOUNT CHECKS
+    if(amountInput1 === "") {
+      alert("amount area cannot be empty (Security Check 1)");
       return;
     }
 
-    if(amount === "") {
-      alert("Approve amount cannot be empty (security check 2)");
-      return
-    }
-
-    if(amount1 < 1) {
-      alert("Minimum amount is 1 (security check 3)");
+    if(amountInput === "") {
+      alert("amount area cannot be empty (Security Check 2)");
       return;
     }
 
-    let userBalance = await contractTokenA.getYourBalance();
-    let userBalance2 = userBalance.toString();
-    let userBalance3 = parseInt(userBalance2);
-
-    if(userBalance3 < 1) {
-      alert("You dont have TokenA to approve. First mint some TokenA (security check 3)");
+    if(amountInput1 < 1) {
+      alert("amount cannot be less than 1 (Security Check 3)");
       return;
     }
 
-    const valueWithDecimals = ethers.utils.parseUnits(amount1, 18);
-    await contractTokenA.transferFrom(AddressOwner, AddressTurboStaking, valueWithDecimals);
-    setMessage(`Success, transfer amount: ${amount1} Token`);
+    let depositorBalance = await contractTokenA.getYourBalance();
+    let depositorBalance2 = depositorBalance.toString();
+    let depositorBalance3 = parseInt(depositorBalance2);
+    if(depositorBalance3 < 1) {
+      alert("You dont have enough TokenA. Visit Token Operations section (Security Check 4)");
+      return;
+    }
 
+    let allowanceAmount = await contractTokenA.allowance(userAccount, AddressTurboStaking);
+    let allowanceAmount2 = allowanceAmount / (10**18);
+    let allowanceAmount3 = allowanceAmount2.toString();
+    if(allowanceAmount3 < amountInput1) {
+      alert("You approve amount is less than your deposit amount. Approve the contract with deposit amount (Security Check 5)");
+      return;
+    } 
+
+    //SYSTEM CHECKS
+    let systemPause = await contractTurboStaking.isPaused();
+    if(systemPause === true) {
+      alert("System has been paused by owner. Contact him to unpause it (security check 6)");
+      return;
+    }
+
+    await contractTurboStaking.provideLiquidity(amountInput1);
+    setMessage(`Lİquidity provided: ${amountInput1} token`);
   }
 
   return (
     <div>
-      <button className='button10' onClick={approvePlatform}>liquidity</button>
-      <input type="number" className='inputFields' placeholder='Token amount'
-      value={amount} onChange={ e => setAmount(e.target.value)} /> {message}
+      <button className='button10' onClick={provideLiq}>Provide Liquidity</button>{isMobile ? <br /> : ""}
+      <input type="number" className='inputFields' placeholder='amount'
+      value={amountInput} onChange={e => setAmountInput(e.target.value)}/> {message}
     </div>
   )
 }
 
 export default OwnerLiquidity;
+
+

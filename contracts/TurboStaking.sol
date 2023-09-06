@@ -205,14 +205,13 @@ contract TurboStaking is Ownable {
 
         emit StakeDecreased(_to, _index, decreaseAmount);
     }
-
-
-    function provideLiquidity1(uint _amount) external pauseStatus onlyOwner {
+    
+    //Liquidity provision by owner is needed, so that we can give out rewards to stakers
+    function provideLiquidity(uint _amount) external pauseStatus {
+        require(msg.sender != address(0), "Cannot stake from address 0");
+        require(_amount > 0, "stake must be > 0");
         uint amount = _amount * (10**18);
         tokenA.transferFrom(msg.sender, address(this), amount);
-    }
-    function provideLiquidity2(uint _amount) external pauseStatus onlyOwner {
-        tokenA.transferFrom(msg.sender, address(this), _amount);
     }
 
     //owner can withdraw tokens inside the contract
