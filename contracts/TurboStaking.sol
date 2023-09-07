@@ -175,7 +175,7 @@ contract TurboStaking is Ownable {
         tokenA.transfer(_to, totalAmount);
 
         emit Unstaked(_to, _index); 
-    }
+    } 
 
     function decreaseStake(uint _index, uint _decreaseAmount, address _to) external onlyStakers pauseStatus { 
         //input and general checks

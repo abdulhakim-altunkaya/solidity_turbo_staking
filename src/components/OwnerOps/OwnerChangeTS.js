@@ -46,7 +46,7 @@ function OwnerChangeTS() {
   }
 
 
-  return (
+  return ( 
     <div>
       <button onClick={transferOwner} className='button4'>Change Owner Staking</button>
       <input type="text" className='inputFields' placeholder='new owner address'

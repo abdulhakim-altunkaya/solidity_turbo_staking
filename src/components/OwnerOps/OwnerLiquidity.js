@@ -72,7 +72,7 @@ function OwnerLiquidity() {
 
   return (
     <div>
-      <button className='button10' onClick={provideLiq}>Provide Liquidity</button>{isMobile ? <br /> : ""}
+      <button className='button4' onClick={provideLiq}>Provide Liquidity</button>{isMobile ? <br /> : ""}
       <input type="number" className='inputFields' placeholder='amount'
       value={amountInput} onChange={e => setAmountInput(e.target.value)}/> {message}
     </div>
