@@ -306,4 +306,19 @@
       #aboutText {
         margin-top: 120px;
       }
+
+      .resultParent {
+        display: flex; /* Use flex display */
+        flex-direction: row;
+        justify-content: space-between; /* Distribute child divs evenly */
+        min-width: 60vw; 
+      }
+      
+      .resultParent > div {
+        flex: 1; /* Distribute equal width among child divs */
+        background-color: lightgray;
+        padding: 10px;
+        text-align: center;
+      }
+      
 }

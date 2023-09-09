@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useAccount } from '../../Store';
-
+import { useMediaQuery } from 'react-responsive';
 
 function Unstake() {
+
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const {ethereum} = window;
 
@@ -83,11 +85,11 @@ function Unstake() {
 
   return (
     <div>
-      <button className='button10' onClick={takeRewardandRemoveStake}>Unstake</button>
+      <button className='button10' onClick={takeRewardandRemoveStake}>Unstake</button>{isMobile ? <br /> : ""}
       <input type="number" className='inputFields' placeholder='Stake Number'
       value={indexInput} onChange={e => setIndexInput(e.target.value)}/>
       <input type="string" className='inputFields' placeholder='Receiver Address'
-      value={receiverAddress} onChange={e => setReceiverAddress(e.target.value)}/><br />{message}
+      value={receiverAddress} onChange={e => setReceiverAddress(e.target.value)}/> <br /> {message}
     </div>
   )
 }

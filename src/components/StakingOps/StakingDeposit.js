@@ -3,7 +3,6 @@ import { useAccount } from '../../Store';
 import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
 import { useMediaQuery } from 'react-responsive';
 
-
 function StakingDeposit() {
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -72,9 +71,9 @@ function StakingDeposit() {
 
   return (
     <div>
-      <button className='button10' onClick={stakeDeposit}>Stake</button>{isMobile ? <br /> : ""}
-      <input type="number" className='inputFields' placeholder='amount'
-      value={amountInput} onChange={e => setAmountInput(e.target.value)}/> {message}
+      <button className='button10' onClick={stakeDeposit}>Stake</button>
+      <input type="number" className='inputFields' placeholder='Amount'
+      value={amountInput} onChange={e => setAmountInput(e.target.value)}/>{isMobile ? <br /> : ""} {message}
     </div>
   )
 }

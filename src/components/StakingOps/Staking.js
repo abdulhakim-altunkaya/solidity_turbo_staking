@@ -18,7 +18,7 @@ function Staking() {
       <StakingDecrease />
       <Unstake />
 
-      <p id='aboutText'>Project created by Abdulhakim Altunkaya. 2023 August</p>
+      <p id='aboutText'>Project created by Abdulhakim Altunkaya for BNB-RiseIn September 2023 Hackathon</p>
     </div>
   )
 }

@@ -54,7 +54,7 @@ function StakingRead() {
 
   return (
     <div>
-      <button className='button11' onClick={displayAllStakes}>Display Stakes</button>{isMobile ? <br /> : ""}
+      <button className='button11' style={{marginLeft: "10px"}} onClick={displayAllStakes}>Display Stakes</button>{isMobile ? <br /> : ""}
       <br />
       <div className='resultParent'>
         <div><strong>Stake Number</strong></div>
@@ -62,7 +62,7 @@ function StakingRead() {
         <div><strong>Stake Date</strong></div>
       </div>
       {itemElements}
-      <div>
+      <div className='stakingReadBalanceDiv'>
         <p><strong>Your Total Staking amount:</strong> {userStakeBalance}</p>
       </div>
     </div>

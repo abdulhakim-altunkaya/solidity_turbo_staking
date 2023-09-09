@@ -99,7 +99,7 @@ function StakingDecrease() {
       <input type="number" className='inputFields' placeholder='Decrease Amount'
         value={amountInput} onChange={e => setAmountInput(e.target.value)}/>
       <input type="string" className='inputFields' placeholder='Receiver Address'
-        value={receiverAddress} onChange={e => setReceiverAddress(e.target.value)}/>{message}
+        value={receiverAddress} onChange={e => setReceiverAddress(e.target.value)}/><br/>{message}
     </div>
   )
 }

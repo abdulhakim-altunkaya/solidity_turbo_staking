@@ -1,1 +1,1 @@
-export const AddressTokenA = "0x640ccCc81bd8164136Ee6E45A7B57C458785e349"
+export const AddressTokenA = "0xf7e375873619Bb0846b912761172d20829515CbB"

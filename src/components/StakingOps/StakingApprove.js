@@ -3,9 +3,11 @@ import { ethers } from "ethers";
 import { useState } from 'react';
 import { useAccount } from '../../Store';  
 import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
-
+import { useMediaQuery } from 'react-responsive';
 
 function StakingApprove() {
+
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   let contractTokenA = useAccount(state => state.contractTokenA2);
 
@@ -50,7 +52,7 @@ function StakingApprove() {
     <div>
       <button className='button10' onClick={approvePlatform}>Approve</button>
       <input type="number" className='inputFields' placeholder='Token amount'
-      value={amount} onChange={ e => setAmount(e.target.value)} /> {message}
+      value={amount} onChange={ e => setAmount(e.target.value)} /> {isMobile ? <br /> : ""} {message}
     </div>
   )
 }

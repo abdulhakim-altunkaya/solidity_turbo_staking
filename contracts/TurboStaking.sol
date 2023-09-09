@@ -167,11 +167,7 @@ contract TurboStaking is Ownable {
         uint reward = calculateReward(stakeAmount, stakeTime);
 
         uint totalAmount = stakeAmount + reward;
-
-        //The stake reset to zero to prevent any operation on it
-        StakeDetailsMapping[msg.sender][_index].amount = 0;
-        StakeDetailsMapping[msg.sender][_index].startTime = block.timestamp;
-
+        stakers[msg.sender] -= stakeAmount;
         //then stake is removed from staking list of user with this for loop
         for (uint256 i = 0; i < StakeDetailsMapping[msg.sender].length - 1; i++) {
             StakeDetailsMapping[msg.sender][i] = StakeDetailsMapping[msg.sender][i+1];

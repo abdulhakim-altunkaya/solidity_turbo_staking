@@ -75,9 +75,9 @@ function StakingRewardStake() {
 
   return (
     <div>
-      <button className='button10' onClick={stakeReward}>Stake Reward</button>{isMobile ? <br /> : ""}
-      <input type="number" className='inputFields' placeholder='stake number'
-      value={indexInput} onChange={e => setIndexInput(e.target.value)}/> {message}
+      <button className='button10' onClick={stakeReward}>Stake Reward</button> 
+      <input type="number" className='inputFields' placeholder='Stake number'
+      value={indexInput} onChange={e => setIndexInput(e.target.value)}/>{isMobile ? <br /> : ""} {message}
     </div>
   )
 }
