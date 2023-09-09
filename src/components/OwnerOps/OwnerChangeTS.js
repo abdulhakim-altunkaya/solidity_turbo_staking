@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import { useAccount } from '../../Store';  
 import { AddressOwner } from "../AddressABI/AddressOwner";
+import { useMediaQuery } from 'react-responsive';
 
 function OwnerChangeTS() {
+
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const {ethereum} = window;
 
@@ -41,7 +44,7 @@ function OwnerChangeTS() {
     }
 
     await contractTurboStaking.transferOwnership(newAddress);
-    setMessage("Owner successfully changed");
+    setMessage("Success, owner changed");
 
   }
 
@@ -50,7 +53,7 @@ function OwnerChangeTS() {
     <div>
       <button onClick={transferOwner} className='button4'>Change Owner Staking</button>
       <input type="text" className='inputFields' placeholder='new owner address'
-      value={newAddress} onChange={e => setNewAddress(e.target.value)} />&nbsp;&nbsp;{message}
+      value={newAddress} onChange={e => setNewAddress(e.target.value)} />{isMobile ? <br /> : " "}{message}
     </div>
   )
 }

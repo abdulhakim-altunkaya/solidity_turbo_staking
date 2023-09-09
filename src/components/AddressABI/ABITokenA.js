@@ -1,4 +1,4 @@
-export const ABITokenA =  [
+export const ABITokenA = [
   {
     "inputs": [
       {

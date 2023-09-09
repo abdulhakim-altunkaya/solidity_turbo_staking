@@ -1,4 +1,4 @@
-export const ABITurboStaking =   [
+export const ABITurboStaking = [
   {
     "inputs": [
       {
@@ -298,6 +298,19 @@ export const ABITurboStaking =   [
       }
     ],
     "name": "displaySpecificStakeAmount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "displayStakeBalance",
     "outputs": [
       {
         "internalType": "uint256",

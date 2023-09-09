@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import { useAccount } from '../../Store';  
 import { AddressOwner } from "../AddressABI/AddressOwner";
-
+import { useMediaQuery } from 'react-responsive';
 
 function OwnerSetAddr() {
+
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const { ethereum } = window;
 
   let contractTurboStaking = useAccount(state => state.contractTurboStaking2);
@@ -39,14 +42,14 @@ function OwnerSetAddr() {
     }
 
     await contractTurboStaking.setToken(addressA);
-    setMessage("Token address successfully set");
+    setMessage("Address successfully set");
   }
 
   return (
     <div>
         <button className='button4' onClick={setAddress}>Set Address</button>
         <input type="text" className='inputFields' placeholder='Token Address'
-        value={addressA} onChange={e => setAddressA(e.target.value)}/> <br /> {message}
+        value={addressA} onChange={e => setAddressA(e.target.value)}/>{isMobile ? <br /> : " "}{message}
     </div>
   )
 }

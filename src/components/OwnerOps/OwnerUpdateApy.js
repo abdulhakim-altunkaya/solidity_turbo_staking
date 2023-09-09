@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useAccount } from '../../Store';  
 import { AddressOwner } from "../AddressABI/AddressOwner";
+import { useMediaQuery } from 'react-responsive';
 
 function OwnerUpdateApy() {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const {ethereum} = window;
 
   const contractTurboStaking = useAccount(state => state.contractTurboStaking2);
@@ -48,7 +51,7 @@ function OwnerUpdateApy() {
     }
 
     await contractTurboStaking.updateApy(amount1);
-    setMessage(`Success, you changed apy to: ${amount1}`);
+    setMessage(`Success, new APY: ${amount1}`);
     
   }
 
@@ -56,7 +59,7 @@ function OwnerUpdateApy() {
     <div>
         <button onClick={changeApy} className='button4'>Change APY</button>
         <input type="number" className='inputFields' placeholder='enter new apy'
-        value={amount} onChange={e => setAmount(e.target.value)}/> {message}
+        value={amount} onChange={e => setAmount(e.target.value)}/>{isMobile ? <br /> : " "}{message}
     </div>
   )
 }
