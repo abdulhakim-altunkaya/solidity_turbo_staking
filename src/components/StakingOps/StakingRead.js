@@ -12,6 +12,7 @@ function StakingRead() {
   const contractTurboStaking = useAccount(state => state.contractTurboStaking2);
 
   let [itemElements, setItemElements] = useState("");
+  let [userStakeBalance, setUserStakeBalance] = useState("");
 
   const displayAllStakes = async () => {
 
@@ -45,6 +46,10 @@ function StakingRead() {
       </div>
     ));
     setItemElements(renderedStakes);
+
+    let userBalance = await contractTurboStaking.displayStakeBalance();
+    setUserStakeBalance(userBalance.toString());
+
   }
 
   return (
@@ -57,6 +62,9 @@ function StakingRead() {
         <div><strong>Stake Date</strong></div>
       </div>
       {itemElements}
+      <div>
+        <p><strong>Your Total Staking amount:</strong> {userStakeBalance}</p>
+      </div>
     </div>
   )
 }

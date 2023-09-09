@@ -42,6 +42,7 @@ body {
 }
 .tokenReadDiv, .tokenWriteDiv {
   min-width: 50%;
+  max-width: 50%;
 }
 
 /*<button class="button6">COPY ME</button>*/
@@ -309,10 +310,11 @@ input[type=number] {
 }
 
 .resultParent {
+  margin-left: 10px;
   display: flex; /* Use flex display */
   flex-direction: row;
   justify-content: space-between; /* Distribute child divs evenly */
-  width: 100%; /* Optional: Set the width of the parent container */
+  min-width: 25vw; 
 }
 
 .resultParent > div {

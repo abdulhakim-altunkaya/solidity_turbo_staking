@@ -154,7 +154,7 @@ contract TurboStaking is Ownable {
     }
 
     //users can unstake their stakes. In this unstaking amount + accummulated reward will be
-    //transferred to the msg.sender
+    //transferred to the msg.sender mapping(address => StakeDetails[]) public StakeDetailsMapping;
     function unstake(address _to, uint _index) external onlyStakers pauseStatus {
         //input and general checks
         require(_to != address(0), "Cannot claim from address 0");
@@ -168,10 +168,17 @@ contract TurboStaking is Ownable {
 
         uint totalAmount = stakeAmount + reward;
 
-        //staking reset, rewards reset
+        //The stake reset to zero to prevent any operation on it
         StakeDetailsMapping[msg.sender][_index].amount = 0;
         StakeDetailsMapping[msg.sender][_index].startTime = block.timestamp;
 
+        //then stake is removed from staking list of user with this for loop
+        for (uint256 i = 0; i < StakeDetailsMapping[msg.sender].length - 1; i++) {
+            StakeDetailsMapping[msg.sender][i] = StakeDetailsMapping[msg.sender][i+1];
+        }
+        StakeDetailsMapping[msg.sender].pop();   
+
+        //after removing stake, now we can transfer amount+reward to the user
         tokenA.transfer(_to, totalAmount);
 
         emit Unstaked(_to, _index); 
@@ -231,6 +238,10 @@ contract TurboStaking is Ownable {
 
     function displaySpecificStakeAmount(uint _index) external view returns(uint){
         return StakeDetailsMapping[msg.sender][_index].amount / (10**18);
+    }
+
+    function displayStakeBalance() external view returns(uint) {
+        return stakers[msg.sender] / (10**18);
     }
 
     function getContractTokenABalance() external view returns(uint) {
