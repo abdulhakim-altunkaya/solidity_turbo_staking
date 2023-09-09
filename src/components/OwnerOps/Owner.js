@@ -20,7 +20,7 @@ function Owner() {
       if(window.ethereum !== "undefined") {
         const accounts = await ethereum.request({method: "eth_requestAccounts"});
         if(accounts[0].toLowerCase() !== AddressOwner.toLowerCase()) {
-          alert("You are not owner, but as this project is an experiment, I will let you to see owner buttons");
+          alert("You are not owner, but as this project is a Hackathon project, I will let you to see owner buttons");
           setDisplayStatus(true);//normally I will delete this line
           //return //Also I need to uncomment this line when in production
         } else {

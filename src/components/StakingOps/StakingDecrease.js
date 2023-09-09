@@ -19,7 +19,7 @@ function StakingDecrease() {
   const stakeDecrease = async () => {
 
     //LOCAL VARIABLES
-    let indexInput1 = parseInt(indexInput);
+    let indexInput1 = parseInt(indexInput) - 1;
     let amountInput1 = parseInt(amountInput);
 
 

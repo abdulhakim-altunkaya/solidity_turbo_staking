@@ -18,7 +18,7 @@ function StakingRewardClaim() {
   const claimYield = async () => {
 
     //LOCAL VARIABLES
-    let indexInput1 = parseInt(indexInput);
+    let indexInput1 = parseInt(indexInput) - 1;
 
     if(window.ethereum !== "undefined") {
       await ethereum.request({method: "eth_requestAccounts"});
@@ -81,7 +81,7 @@ function StakingRewardClaim() {
     }
 
     await contractTurboStaking.claimReward(receiverAddress, indexInput1);
-    setMessage(`You successfully claimed a Reward of ${indexInput1} token`);
+    setMessage(`You successfully claimed reward`);
   }
 
   return (

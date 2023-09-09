@@ -2,9 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useAccount } from '../../Store';  
 import { AddressTurboStaking } from "../AddressABI/AddressTurboStaking";
+import { useMediaQuery } from 'react-responsive';
 
 function StakingBalances() {
 
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  
   const {ethereum} = window;
 
   const contractTurboStaking = useAccount(state => state.contractTurboStaking2);
@@ -63,7 +66,7 @@ function StakingBalances() {
         <>
           <strong><span>Staking Pool Balance:</span></strong> {balanceTokenA} TokenA<br />
           <strong>User Allowance:</strong> {userAllowanceAmount} TokenA <br />
-          <strong>Current APY:</strong> {currentApy} % <br />
+          <strong>Current APY:</strong> {currentApy} % <br /> {isMobile ? "" : <br /> }
         </>
       }
 

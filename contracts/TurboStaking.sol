@@ -169,7 +169,7 @@ contract TurboStaking is Ownable {
         uint totalAmount = stakeAmount + reward;
         stakers[msg.sender] -= stakeAmount;
         //then stake is removed from staking list of user with this for loop
-        for (uint256 i = 0; i < StakeDetailsMapping[msg.sender].length - 1; i++) {
+        for (uint256 i = _index; i < StakeDetailsMapping[msg.sender].length - 1; i++) {
             StakeDetailsMapping[msg.sender][i] = StakeDetailsMapping[msg.sender][i+1];
         }
         StakeDetailsMapping[msg.sender].pop();   
@@ -199,7 +199,8 @@ contract TurboStaking is Ownable {
         if(newStakeAmount < 1){
             revert("You have decreased way too much. Consider using unstaking.");
         }
-    
+        stakers[msg.sender] -= decreaseAmount;
+        
         StakeDetailsMapping[msg.sender][_index].amount = newStakeAmount;
         StakeDetailsMapping[msg.sender][_index].startTime = block.timestamp;
 

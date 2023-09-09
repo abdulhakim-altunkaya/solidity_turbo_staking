@@ -17,7 +17,7 @@ function Unstake() {
   const takeRewardandRemoveStake = async () => {
 
     //LOCAL VARIABLES
-    let indexInput1 = parseInt(indexInput);
+    let indexInput1 = parseInt(indexInput) - 1;
 
     if(window.ethereum !== "undefined") {
       await ethereum.request({method: "eth_requestAccounts"});

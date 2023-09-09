@@ -19,21 +19,21 @@ function StakingRead() {
     if(window.ethereum !== "undefined") {
       await ethereum.request({method: "eth_requestAccounts"});
     } else {
-      alert("dowload metamask please");
+      alert("dowload metamask please (Security check 1)");
       return;
     }
 
     //USER CHECKS
     let stakerStatus = await contractTurboStaking.isStaker();
     if(stakerStatus === false) {
-      alert("You dont have any reward. Your staking balance is 0 (security check 5)");
+      alert("You dont have any stake (Security check 2)");
       return;
     }
 
     //SYSTEM CHECKS
     let systemPause = await contractTurboStaking.isPaused();
     if(systemPause === true) {
-      alert("System has been paused by owner. Contact him to unpause it (security check 6)");
+      alert("System has been paused by owner. Contact him to unpause it (security check 3)");
       return;
     }
 
