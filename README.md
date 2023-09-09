@@ -9,6 +9,6 @@ Created by Abdulhakim Altunkaya for BNB-RiseIn Hackathon 2023.
 ### Background: <a href="https://coolbackgrounds.io/" title="free backgrounds by CoolBackgrounds.io">CoolBackgrounds.io</a>
 
 
-make stake components index number -1
+
 display button on display stakes
 decrease stake should check if decrease amount is too much. If much then, should advise unstaking

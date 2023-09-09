@@ -11,6 +11,7 @@ function StakingRead() {
 
   const contractTurboStaking = useAccount(state => state.contractTurboStaking2);
 
+  let [displayContent, setDisplayContent] = useState(false);
   let [itemElements, setItemElements] = useState("");
   let [userStakeBalance, setUserStakeBalance] = useState("");
 
@@ -46,7 +47,7 @@ function StakingRead() {
       </div>
     ));
     setItemElements(renderedStakes);
-
+    setDisplayContent(!displayContent);
     let userBalance = await contractTurboStaking.displayStakeBalance();
     setUserStakeBalance(userBalance.toString());
 
@@ -55,16 +56,23 @@ function StakingRead() {
   return (
     <div>
       <button className='button11' style={{marginLeft: "10px"}} onClick={displayAllStakes}>Display Stakes</button>{isMobile ? <br /> : ""}
-      <br />
-      <div className='resultParent'>
-        <div><strong>Stake Number</strong></div>
-        <div><strong>Amount</strong></div>
-        <div><strong>Stake Date</strong></div>
-      </div>
-      {itemElements}
-      <div className='stakingReadBalanceDiv'>
-        <p><strong>Your Total Staking amount:</strong> {userStakeBalance}</p>
-      </div>
+      {displayContent === false ? 
+        <></>
+        :
+        <>
+          <br />
+          <div className='resultParent'>
+            <div><strong>Stake Number</strong></div>
+            <div><strong>Amount</strong></div>
+            <div><strong>Stake Date</strong></div>
+          </div>
+          {itemElements}
+          <div className='stakingReadBalanceDiv'>
+            <p><strong>Your Total Staking amount:</strong> {userStakeBalance}</p>
+          </div>
+        </>
+        }
+
     </div>
   )
 }
