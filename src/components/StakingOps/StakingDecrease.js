@@ -79,6 +79,10 @@ function StakingDecrease() {
         alert("Stake amount for this number is 0. Check you stake number. (security check 10)");
         return;
     }
+    if(stakeAmount3 - amountInput1 < 1){
+      alert("You have decreased too much, either decrease less or unstake all of it");
+      return;
+    }
 
     //SYSTEM CHECKS
     let systemPause = await contractTurboStaking.isPaused();
