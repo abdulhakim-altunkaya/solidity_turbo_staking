@@ -86,5 +86,51 @@ describe("TurboStaking", () => {
     expect(Number(allowedamount) / (10**18)).to.equal(1000);
   });
 
+  it("Should deposit 50 tokens as liquidity to the TurboStaking contract", async () => {
+    //1.mint 1000 tokens
+    await contractTokenA.mintToken(1000);
+    //2.approve turboStaking contract with 2000 tokens
+    const valueWithDecimals = ethers.utils.parseEther("2000", 18);
+    await contractTokenA.approve(addressTurboStaking, valueWithDecimals);
+
+    //3.Set the tokenA contract addresss
+    await contractTurboStaking.setToken(addressTokenA);
+    //4.Depositing 50 tokens
+    await contractTurboStaking.provideLiquidity(50);
+
+    //5.getting the balance of TurboStaking contract, should return 50
+    let turboBalance = await contractTurboStaking.getContractTokenABalance();
+    expect(Number(turboBalance)).to.equal(50);
+  });
+
+  it("Should deposit 200 tokens as liquidity and withdraw all of it", async () => {
+    //1.mint and approve operations - details above
+    await contractTokenA.mintToken(1000);
+    const valueWithDecimals = ethers.utils.parseEther("2000", 18);
+    await contractTokenA.approve(addressTurboStaking, valueWithDecimals);
+    //2. setting tokenA contract address
+    await contractTurboStaking.setToken(addressTokenA);
+    //3.depositing 200 tokens
+    await contractTurboStaking.provideLiquidity(200);
+
+    //4. getting the balances for before withdrawal
+    let turboBalance1 = await contractTurboStaking.getContractTokenABalance();
+    let depositorBalance1 = await contractTurboStaking.getYourTokenABalance();
+    console.log(`Contract Balance before withdrawal: ${turboBalance1}`);
+    console.log(`Depositor Balance before withdrawal: ${depositorBalance1}`);
+
+    //5. witdrawing all tokens - onlyOwner
+    await contractTurboStaking.withdrawBalance();
+
+    //6. getting the balances after withdrawal
+    let turboBalance2 = await contractTurboStaking.getContractTokenABalance();
+    let depositorBalance2 = await contractTurboStaking.getYourTokenABalance();
+    console.log(`Contract Balance after withdrawal: ${turboBalance2}`);
+    console.log(`Depositor Balance after withdrawal: ${depositorBalance2}`);
+
+    //7. an expect check
+    expect(Number(turboBalance2)).to.equal(0);
+  });
+
 
 });
