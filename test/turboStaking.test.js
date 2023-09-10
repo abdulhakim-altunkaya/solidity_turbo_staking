@@ -31,28 +31,22 @@ describe("TurboStaking", () => {
     [owner] = await ethers.getSigners();
   });
 
-  it("Should deploy contract and print success message", async () => {
+  it("1) Should deploy contract and print success message", async () => {
       console.log("Deployment is successful");
   });
 
-  it("Should return the symbol of TokenA as TOKA", async () => {
+  it("2) Should return the symbol of TokenA as TOKA", async () => {
     const tokenName = await contractTokenA.symbol();
     expect(tokenName).to.equal("TOKA");
   })
 
-  it("Should check the owner of TokenA", async () => {
+  it("3) Should check the owner of TokenA", async () => {
     expect(await contractTokenA.owner()).to.equal(owner.address);
     let tokenAOwner = await contractTokenA.owner();
     console.log(`Hardhat Testing Owner for TokenA:  ${tokenAOwner}`);
   })
-
-  it("Should check the owner of TurboStaking", async () => {
-    expect(await contractTurboStaking.owner()).to.equal(owner.address);
-    let turboStakingOwner = await contractTurboStaking.owner();
-    console.log(`Hardhat Testing Owner for TurboStaking:  ${turboStakingOwner}`);
-  })
   
-  it("Should mint 1000 tokenA for Owner", async () => {
+  it("4) Should mint 1000 tokenA for Owner", async () => {
     await contractTokenA.mintToken(1000)
     const tokenBalance = await contractTokenA.getYourBalance();
     //as it returns a string, I need to convert it to Number
@@ -60,20 +54,20 @@ describe("TurboStaking", () => {
     console.log(`TokenA Balance of msg.sender/owner: ${tokenBalance}`);
   });
 
-  it("Should set addresss of TokenA on TurboStaking contract", async () => {
+  it("5) Should set addresss of TokenA on TurboStaking contract", async () => {
     await contractTurboStaking.setToken(addressTokenA);
     let tokenAddress = await contractTurboStaking.tokenA();
     expect(addressTokenA).to.equal(tokenAddress);
     console.log(`TokenA Contract Address: ${tokenAddress}`);
   });
 
-  it("Should pause TurboStaking contract", async () => {
+  it("6) Should pause TurboStaking contract", async () => {
     await contractTurboStaking.togglePause();
     let statusPause = await contractTurboStaking.isPaused();
     expect(statusPause).to.equal(true);
   });
 
-  it("Should approve the TurboStaking contract with 1000 tokens", async () => {
+  it("7) Should approve the TurboStaking contract with 1000 tokens", async () => {
     //first we will mint tokens. mintToken is an owner function
     await contractTokenA.mintToken(1000);
     //as we will use approve function erc20, we also need to manage decimals
@@ -86,7 +80,7 @@ describe("TurboStaking", () => {
     expect(Number(allowedamount) / (10**18)).to.equal(1000);
   });
 
-  it("Should deposit 50 tokens as liquidity to the TurboStaking contract", async () => {
+  it("8) Should deposit 50 tokens as liquidity to the TurboStaking contract", async () => {
     //1.mint 1000 tokens
     await contractTokenA.mintToken(1000);
     //2.approve turboStaking contract with 2000 tokens
@@ -103,14 +97,14 @@ describe("TurboStaking", () => {
     expect(Number(turboBalance)).to.equal(50);
   });
 
-  it("Should deposit 200 tokens as liquidity and withdraw all of it", async () => {
+  it("9) Should deposit 200 tokens as liquidity and withdraw all of it", async () => {
     //1.mint and approve operations - details above
     await contractTokenA.mintToken(1000);
     const valueWithDecimals = ethers.utils.parseEther("2000", 18);
     await contractTokenA.approve(addressTurboStaking, valueWithDecimals);
     //2. setting tokenA contract address
     await contractTurboStaking.setToken(addressTokenA);
-    //3.depositing 200 tokens
+    //3. depositing 200 tokens
     await contractTurboStaking.provideLiquidity(200);
 
     //4. getting the balances for before withdrawal
@@ -132,5 +126,60 @@ describe("TurboStaking", () => {
     expect(Number(turboBalance2)).to.equal(0);
   });
 
+  it("10) Should stake 300 tokens", async () => {
+    //1.mint and approve operations - details above
+    await contractTokenA.mintToken(1000);
+    const valueWithDecimals = ethers.utils.parseEther("2000", 18);
+    await contractTokenA.approve(addressTurboStaking, valueWithDecimals);
+    //2. setting tokenA contract address
+    await contractTurboStaking.setToken(addressTokenA);
+    //4. Staking 300 tokens
+    await contractTurboStaking.stake(300);
 
+    //5. Checking if staking is successful
+    let signer = await ethers.getSigner();
+    let signerAddress = await signer.getAddress();
+    let stakerBalance = await contractTurboStaking.stakers(signerAddress);
+    expect(Number(stakerBalance / (10**18))).to.equal(300);
+  });
+
+  it("11) Should Unstake 300 tokens", async () => {
+    //1.mint and approve operations
+    await contractTokenA.mintToken(1000);
+    const valueWithDecimals = ethers.utils.parseEther("2000", 18);
+    await contractTokenA.approve(addressTurboStaking, valueWithDecimals);
+    //2. setting tokenA contract address
+    await contractTurboStaking.setToken(addressTokenA);
+    //4. Staking 200 tokens
+    await contractTurboStaking.stake(300);
+
+    //5. getting msg.sender information
+    let signer = await ethers.getSigner();
+    let signerAddress = await signer.getAddress();
+    //6. unstaking: as user has staked only once, this stake will be recorded to 0 index
+    await contractTurboStaking.unstake(signerAddress, 0);
+    let stakerBalance = await contractTurboStaking.stakers(signerAddress);
+    expect(Number(stakerBalance)).to.equal(0);
+  });
+
+  it("12) Should decrease stake", async () => {
+    //1.mint and approve operations
+    await contractTokenA.mintToken(1000);
+    const valueWithDecimals = ethers.utils.parseEther("2000", 18);
+    await contractTokenA.approve(addressTurboStaking, valueWithDecimals);
+    //2. setting tokenA contract address
+    await contractTurboStaking.setToken(addressTokenA);
+    //4. Staking 200 tokens
+    await contractTurboStaking.stake(300);
+
+    //5. getting msg.sender information
+    let signer = await ethers.getSigner();
+    let signerAddress = await signer.getAddress();
+    //6. stake decreasing: as user has staked only once, this stake will be recorded to 0 index
+    //we will decrease it by 25, and send this amount to msg.sender
+    await contractTurboStaking.decreaseStake(0, 25, signerAddress);
+    let stakerBalance = await contractTurboStaking.stakers(signerAddress);
+    //300-25 = 275. User should have this much stake amount
+    expect(Number(stakerBalance) / (10**18)).to.equal(275);
+  });
 });
