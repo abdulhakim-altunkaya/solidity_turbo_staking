@@ -7,7 +7,7 @@ function TokenRead() {
       <p>To use this website: <br />
         1. Make sure you have Metamask installed on your browser <br />
         2. Make sure you are on BNB Testnet <br />
-        3. Make sure you have BNB tokens.
+        3. Make sure you have BNB tokens (Faucet is in BNB Discord)
       </p>
       <p>
         4. Mint 400 tokens <i>(Token Operations-Mint TokenA)</i><br />
