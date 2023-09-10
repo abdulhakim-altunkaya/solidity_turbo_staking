@@ -8,10 +8,6 @@ Created by Abdulhakim Altunkaya for BNB-RiseIn Hackathon September 2023.
 
 ### Website: <a href="https://turbostaking.netlify.app/" title="turbo staking website">turbostaking.netlify.app</a>
 
-#### Website Icon: <a href="https://www.flaticon.com/free-icons/shapes-and-symbols" title="shapes and symbols icons">by rizal2109 - Flaticon</a>
-
-#### Website Background: <a href="https://coolbackgrounds.io/" title="free backgrounds by CoolBackgrounds.io">CoolBackgrounds.io</a>
-
 ## HOW TO USE WEBSITE
 <p>To use this website: <br />
 1. Make sure you have Metamask installed on your browser <br />
@@ -26,3 +22,6 @@ Created by Abdulhakim Altunkaya for BNB-RiseIn Hackathon September 2023.
 8. See your stakes <i>(Platform Operations-Display Stakes)</i><br />
 9. You can play with other buttons also.
 </p>
+
+#### Website Icon: <a href="https://www.flaticon.com/free-icons/shapes-and-symbols" title="shapes and symbols icons">by rizal2109 - Flaticon</a>
+#### Website Background: <a href="https://coolbackgrounds.io/" title="free backgrounds by CoolBackgrounds.io">CoolBackgrounds.io</a>
