@@ -225,6 +225,7 @@ contract TurboStaking is Ownable {
         tokenA.transfer(msg.sender, balance);
     }
 
+    //VIEW FUNCTIONS
     function displayStakes() external view returns(StakeDetails[] memory) {
         return StakeDetailsMapping[msg.sender];
     }
