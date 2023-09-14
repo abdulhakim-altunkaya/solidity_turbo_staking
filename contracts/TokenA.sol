@@ -5,7 +5,7 @@ pragma solidity >= 0.8.7;
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-//Jumbo Swap AMM Pool will need two tokens: TokenA and TokenB.
+//TokenA contract for testing the platform.
 //Tokens are created with a cap. That's why it is ERC20Capped. Cap will be 1.000.000
 contract TokenA is Ownable, ERC20Capped {
 
